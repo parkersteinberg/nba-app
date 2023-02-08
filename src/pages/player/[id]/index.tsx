@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+const nba = require('nba-api-client')
 
 export type Team = {
   abbreviation: string
@@ -26,6 +27,7 @@ const PlayerHome = () => {
   // this is where we could put our useEffect (or create custom hook?) to fetch data
 
   const [player, setPlayer] = useState<Player | undefined>()
+  const [nbaPlayerId, setNbaPlayerId] = useState('')
 
   // this has to be called 'id' bc that's what we named it in our routing/page setup
   const router = useRouter()
@@ -39,21 +41,35 @@ const PlayerHome = () => {
       console.log('data is', data)
       // return data
       setPlayer({ player, ...data })
+      // get nba player id for headshot
     }
-
     fetchStaticPlayerData()
-    // const playerData = fetchStaticPlayerData()
-    // console.log('playerData is', playerData)
-    // setPlayer(() => (playerData.first_name))
   }, [])
+
+  useEffect(() => {
+    if (player) {
+      setNbaPlayerId(
+        nba.getPlayerID(`${player.first_name} ${player.last_name}`).PlayerID
+      )
+    }
+  }, [player])
 
   return (
     <div>
       {player ? (
-        <p>
-          Player is {player.first_name}, their id is {player.id} and they weigh{' '}
-          {player.weight_pounds} lbs{' '}
-        </p>
+        <div>
+          <p>
+            Player is {player.first_name} {player.last_name}, their id is{' '}
+            {player.id} and they weigh {player.weight_pounds} lbs{' '}
+          </p>
+
+          {nbaPlayerId && (
+            <img
+              src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`}
+              alt="player headshot"
+            />
+          )}
+        </div>
       ) : null}
     </div>
   )

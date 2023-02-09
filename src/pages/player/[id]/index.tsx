@@ -1,3 +1,5 @@
+import InjurySearchParams from '@/components/InjurySearchParams'
+import PlayerCard from '@/components/PlayerCard'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 const nba = require('nba-api-client')
@@ -58,19 +60,10 @@ const PlayerHome = () => {
     <div>
       {player ? (
         <div>
-          <p>
-            Player is {player.first_name} {player.last_name}, their id is{' '}
-            {player.id} and they weigh {player.weight_pounds} lbs{' '}
-          </p>
-
-          {nbaPlayerId && (
-            <img
-              src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`}
-              alt="player headshot"
-            />
-          )}
+          <PlayerCard player={player} nbaPlayerId={nbaPlayerId} />
         </div>
       ) : null}
+      <InjurySearchParams />
     </div>
   )
 }

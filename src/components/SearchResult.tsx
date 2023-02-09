@@ -29,7 +29,7 @@ const SearchResult = ({ player }: SearchResultsProps) => {
   return (
     <div>
       <p>
-        {player.first_name} {player.last_name}
+        {player.first_name} {player.last_name} - {player.team.abbreviation}
       </p>
       <Link href="/player/[id]" as={`/player/${player.id}`}>
         <button>Go to player profile</button>

@@ -1,6 +1,7 @@
 import InjurySearchParams from '@/components/InjurySearchParams'
 import PlayerCard from '@/components/PlayerCard'
 import { useRouter } from 'next/router'
+import { GetServerSidePropsContext } from 'next'
 import { useEffect, useState } from 'react'
 const nba = require('nba-api-client')
 
@@ -27,6 +28,7 @@ export type Player = {
 
 const PlayerHome = () => {
   // this is where we could put our useEffect (or create custom hook?) to fetch data
+  // console.log('access props? ', props)
 
   const [player, setPlayer] = useState<Player | undefined>()
   const [nbaPlayerId, setNbaPlayerId] = useState('')
@@ -68,6 +70,13 @@ const PlayerHome = () => {
   )
 }
 
-// or we could use getServerSideProps here too, if appropriate (not sure if it is)
+// assist with retrieving url params upon page refresh
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  console.log(context)
+
+  return {
+    props: {},
+  }
+}
 
 export default PlayerHome

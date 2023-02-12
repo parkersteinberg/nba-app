@@ -3,6 +3,7 @@ import {
   List,
   ListItem,
   // ListItemButton,
+  Divider,
   ListItemIcon,
   ListItemText,
 } from '@mui/material'
@@ -56,6 +57,7 @@ const SearchResult = ({ player }: SearchResultsProps) => {
               <SportsBasketballIcon></SportsBasketballIcon>
             </ListItemIcon>
           </ListItem>
+          <Divider />
         </Link>
       </List>
     </div>

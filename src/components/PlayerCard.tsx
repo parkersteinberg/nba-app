@@ -1,3 +1,7 @@
+import InfoIcon from '@mui/icons-material/Info'
+import { Card, CardMedia, Tooltip, IconButton, Typography } from '@mui/material'
+// import Image from 'next/image'
+
 // need to pass down player object
 export type Team = {
   abbreviation: string
@@ -28,27 +32,59 @@ type PlayerCardProps = {
 const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
   return (
     <div>
-      <div className="player-name">
-        <div className="player-info-container">
-          <div className="player-img">
-            <img
-              src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`}
-              alt="player headshot"
-            />
-          </div>
-          <div className="player-info">
-            <h2>{`${player.first_name} ${player.last_name}`}</h2>
+      {/* material ui */}
+      <Card>
+        <CardMedia>
+          {/* <Image
+            src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`}
+            alt="player headshot"
+            width={100}
+            height={100}
+          /> */}
+          <img
+            src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`}
+            alt="player headshot"
+          />
+        </CardMedia>
+        <Typography gutterBottom variant="h4" component="div">
+          {`${player.first_name} ${player.last_name}`}
+        </Typography>
+        <div className="player-info">
+          <Typography gutterBottom variant="h6" component="div">
+            <strong>
+              Durability Score
+              <Tooltip
+                title="Durability Score is calculated based on the percentage of games that this player has played compared to the total number of games that the player's team played in"
+                placement="top"
+              >
+                <IconButton>
+                  <InfoIcon />
+                </IconButton>
+              </Tooltip>
+              {': '}
+            </strong>
+            {/* TODO: replace with durability score */}
+            {'A-'}
+          </Typography>
+          <Typography gutterBottom variant="subtitle1" component="div">
             <ul>
-              <li>Team: {player.team.full_name}</li>
-              <li>Position: {player.position}</li>
               <li>
-                Height: {`${player.height_feet}'${player.height_inches}"`}
+                <strong>Team:</strong> {player.team.full_name}
               </li>
-              <li>Weight: {player.weight_pounds} lbs</li>
+              <li>
+                <strong>Position:</strong> {player.position}
+              </li>
+              <li>
+                <strong>Height:</strong>{' '}
+                {`${player.height_feet}'${player.height_inches}"`}
+              </li>
+              <li>
+                <strong>Weight:</strong> {player.weight_pounds} lbs
+              </li>
             </ul>
-          </div>
+          </Typography>
         </div>
-      </div>
+      </Card>
     </div>
   )
 }

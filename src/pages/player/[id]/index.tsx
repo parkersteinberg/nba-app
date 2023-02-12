@@ -1,3 +1,4 @@
+import InjuryHistoryTable from '@/components/InjuryHistoryTable'
 import InjurySearchParams from '@/components/InjurySearchParams'
 import PlayerCard from '@/components/PlayerCard'
 // import { queryDatabase } from '@/database/index'
@@ -68,6 +69,8 @@ const PlayerHome = () => {
           <PlayerCard player={player} nbaPlayerId={nbaPlayerId} />
         </div>
       ) : null}
+      <br />
+      <br />
       <InjurySearchParams />
       <hr></hr>
       <button
@@ -82,6 +85,12 @@ const PlayerHome = () => {
       >
         CLICK MEEEEE
       </button>
+      <hr></hr>
+
+      <br />
+      <br />
+
+      <InjuryHistoryTable />
     </div>
   )
 }

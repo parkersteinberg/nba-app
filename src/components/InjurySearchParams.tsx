@@ -1,3 +1,13 @@
+import {
+  InputLabel,
+  MenuItem,
+  FormHelperText,
+  FormControl,
+  Select,
+  SelectChangeEvent,
+  Button,
+} from '@mui/material'
+
 const InjurySearchParams = () => {
   return (
     <div>
@@ -7,35 +17,50 @@ const InjurySearchParams = () => {
           console.log('submitted!')
         }}
       >
-        <label htmlFor="start">Start Season</label>
-        <select name="start" id="start">
-          <option value="">Select Season</option>
-          <option value="2012-2013">2012-2013</option>
-          <option value="2013-2014">2013-2014</option>
-          <option value="2014-2015">2014-2015</option>
-          <option value="2015-2016">2015-2016</option>
-          <option value="2016-2017">2016-2017</option>
-          <option value="2017-2018">2017-2018</option>
-          <option value="2018-2019">2018-2019</option>
-          <option value="2019-2020">2019-2020</option>
-          <option value="2020-2021">2020-2021</option>
-          <option value="2021-2022">2021-2022</option>
-        </select>
-        <label htmlFor="end">End Season</label>
-        <select name="end" id="end">
-          <option value="">Select Season</option>
-          <option value="2012-2013">2012-2013</option>
-          <option value="2013-2014">2013-2014</option>
-          <option value="2014-2015">2014-2015</option>
-          <option value="2015-2016">2015-2016</option>
-          <option value="2016-2017">2016-2017</option>
-          <option value="2017-2018">2017-2018</option>
-          <option value="2018-2019">2018-2019</option>
-          <option value="2019-2020">2019-2020</option>
-          <option value="2020-2021">2020-2021</option>
-          <option value="2021-2022">2021-2022</option>
-        </select>
-        <input type="submit" value="Submit" />
+        <FormControl sx={{ m: 1, minWidth: 140 }}>
+          <InputLabel id="start-season-label">Start Season</InputLabel>
+          <Select
+            labelId="start-season-label"
+            value={''}
+            label="Start Season"
+            // onChange={() => return}
+          >
+            <MenuItem value="">All Seasons</MenuItem>
+            <MenuItem value="2012-2013">2012-2013</MenuItem>
+            <MenuItem value="2013-2014">2013-2014</MenuItem>
+            <MenuItem value="2014-2015">2014-2015</MenuItem>
+            <MenuItem value="2015-2016">2015-2016</MenuItem>
+            <MenuItem value="2016-2017">2016-2017</MenuItem>
+            <MenuItem value="2017-2018">2017-2018</MenuItem>
+            <MenuItem value="2018-2019">2018-2019</MenuItem>
+            <MenuItem value="2019-2020">2019-2020</MenuItem>
+            <MenuItem value="2020-2021">2020-2021</MenuItem>
+            <MenuItem value="2021-2022">2021-2022</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ m: 1, minWidth: 140 }}>
+          <InputLabel id="end-season-label">End Season</InputLabel>
+          <Select
+            labelId="end-season-label"
+            value={''}
+            label="End Season"
+            // onChange={() => return}
+          >
+            <MenuItem value="">All Seasons</MenuItem>
+            <MenuItem value="2012-2013">2012-2013</MenuItem>
+            <MenuItem value="2013-2014">2013-2014</MenuItem>
+            <MenuItem value="2014-2015">2014-2015</MenuItem>
+            <MenuItem value="2015-2016">2015-2016</MenuItem>
+            <MenuItem value="2016-2017">2016-2017</MenuItem>
+            <MenuItem value="2017-2018">2017-2018</MenuItem>
+            <MenuItem value="2018-2019">2018-2019</MenuItem>
+            <MenuItem value="2019-2020">2019-2020</MenuItem>
+            <MenuItem value="2020-2021">2020-2021</MenuItem>
+            <MenuItem value="2021-2022">2021-2022</MenuItem>
+          </Select>
+        </FormControl>
+        <Button type="submit">Set Dates</Button>
       </form>
     </div>
   )

@@ -1,7 +1,8 @@
 import InjurySearchParams from '@/components/InjurySearchParams'
 import PlayerCard from '@/components/PlayerCard'
+// import { queryDatabase } from '@/database/index'
 import { useRouter } from 'next/router'
-import { GetServerSidePropsContext } from 'next'
+// import { GetServerSidePropsContext } from 'next'
 import { useEffect, useState } from 'react'
 const nba = require('nba-api-client')
 
@@ -48,6 +49,8 @@ const PlayerHome = () => {
       // get nba player id for headshot
     }
     fetchStaticPlayerData()
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -66,13 +69,24 @@ const PlayerHome = () => {
         </div>
       ) : null}
       <InjurySearchParams />
+      <hr></hr>
+      <button
+        onClick={async () => {
+          console.log('clicked')
+          const res = await fetch('/api/injury?player=Kevin+Durant')
+          const data = await res.json()
+          console.log('data is', data)
+        }}
+      >
+        CLICK MEEEEE
+      </button>
     </div>
   )
 }
 
 // assist with retrieving url params upon page refresh
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  console.log(context)
+export async function getServerSideProps() {
+  // console.log(context)
 
   return {
     props: {},

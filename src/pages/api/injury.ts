@@ -18,6 +18,7 @@ export default function handler(
   WHERE player = '${player}'
   limit 5
   `
+  // TODO: make this async/await compatible
   queryDatabase(queryString, [])
     .then((result) => {
       // console.log(result)

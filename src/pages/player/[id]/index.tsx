@@ -73,7 +73,9 @@ const PlayerHome = () => {
       <button
         onClick={async () => {
           console.log('clicked')
-          const res = await fetch('/api/injury?player=Kevin+Durant')
+          const res = await fetch(
+            `/api/injury?player=${player?.first_name}+${player?.last_name}`
+          )
           const data = await res.json()
           console.log('data is', data)
         }}

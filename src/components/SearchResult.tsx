@@ -1,4 +1,12 @@
 import Link from 'next/link'
+import {
+  List,
+  ListItem,
+  // ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material'
+import SportsBasketballIcon from '@mui/icons-material/SportsBasketball'
 
 export type Team = {
   abbreviation: string
@@ -28,12 +36,28 @@ type SearchResultsProps = {
 const SearchResult = ({ player }: SearchResultsProps) => {
   return (
     <div>
-      <p>
+      {/* <p>
         {player.first_name} {player.last_name} - {player.team.abbreviation}
       </p>
       <Link href="/player/[id]" as={`/player/${player.id}`}>
         <button>Go to player profile</button>
-      </Link>
+      </Link> */}
+
+      <List>
+        <Link href="/player/[id]" as={`/player/${player.id}`}>
+          <ListItem disablePadding>
+            <ListItemText
+              primary={`${player.first_name} ${player.last_name}`}
+              secondary={`${player.team.full_name}`}
+            >
+              <button>Go to player profile</button>
+            </ListItemText>
+            <ListItemIcon>
+              <SportsBasketballIcon></SportsBasketballIcon>
+            </ListItemIcon>
+          </ListItem>
+        </Link>
+      </List>
     </div>
   )
 }

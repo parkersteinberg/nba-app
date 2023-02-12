@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import SearchResult from './SearchResult'
+import { TextField, Button } from '@mui/material'
 
 export type Team = {
   abbreviation: string
@@ -51,15 +52,15 @@ const SearchParams = () => {
   return (
     <div>
       <form onSubmit={handleSearchSubmit}>
-        <label htmlFor="search">Find a player here:</label>
-        <input
-          type="text"
-          name="search"
-          placeholder="Search for a player here"
-          value={searchInput}
+        <TextField
+          id="filled-basic"
+          label="Search For Player"
+          variant="filled"
           onChange={handleChange}
         />
-        <button>Search</button>
+        <Button type="submit" variant="contained">
+          Search
+        </Button>
       </form>
 
       <div>

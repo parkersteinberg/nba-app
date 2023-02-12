@@ -1,14 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableRow,
-  TableContainer,
-  TableCell,
-  TableHead,
-  Paper,
-  Box,
-  Typography,
-} from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import {
   DataGrid,

@@ -7,23 +7,38 @@ import {
   SelectChangeEvent,
   Button,
 } from '@mui/material'
+import { useState } from 'react'
 
 const InjurySearchParams = () => {
+  const [startSeason, setStartSeason] = useState('')
+  const [endSeason, setEndSeason] = useState('')
+
+  const handleSubmit = (e) => {
+    // This is going to sumbit our form and hit
+    // the API that queries our Sql db and sets
+    // injury history table
+    e.preventDefault()
+    console.log('submitted!')
+  }
+
+  const handleStartChange = (e: SelectChangeEvent) => {
+    setStartSeason(e.target.value)
+  }
+
+  const handleEndChange = (e: SelectChangeEvent) => {
+    setEndSeason(e.target.value)
+  }
+
   return (
     <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          console.log('submitted!')
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <FormControl sx={{ m: 1, minWidth: 140 }}>
           <InputLabel id="start-season-label">Start Season</InputLabel>
           <Select
             labelId="start-season-label"
-            value={''}
+            value={startSeason}
             label="Start Season"
-            // onChange={() => return}
+            onChange={handleStartChange}
           >
             <MenuItem value="">All Seasons</MenuItem>
             <MenuItem value="2012-2013">2012-2013</MenuItem>
@@ -43,9 +58,9 @@ const InjurySearchParams = () => {
           <InputLabel id="end-season-label">End Season</InputLabel>
           <Select
             labelId="end-season-label"
-            value={''}
+            value={endSeason}
             label="End Season"
-            // onChange={() => return}
+            onChange={handleEndChange}
           >
             <MenuItem value="">All Seasons</MenuItem>
             <MenuItem value="2012-2013">2012-2013</MenuItem>

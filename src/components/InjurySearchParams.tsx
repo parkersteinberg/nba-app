@@ -1,32 +1,39 @@
 import {
   InputLabel,
   MenuItem,
-  FormHelperText,
+  // FormHelperText,
   FormControl,
-  Select,
   SelectChangeEvent,
+  Select,
   Button,
 } from '@mui/material'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const InjurySearchParams = () => {
   const [startSeason, setStartSeason] = useState('')
   const [endSeason, setEndSeason] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // This is going to sumbit our form and hit
     // the API that queries our Sql db and sets
     // injury history table
     e.preventDefault()
+    console.log(
+      `start date is ${startSeason.slice(0, 4)}, end date is ${endSeason.slice(
+        0,
+        4
+      )}`
+    )
     console.log('submitted!')
   }
 
-  const handleStartChange = (e: SelectChangeEvent) => {
-    setStartSeason(e.target.value)
-  }
-
-  const handleEndChange = (e: SelectChangeEvent) => {
-    setEndSeason(e.target.value)
+  const handleChange = (e: SelectChangeEvent) => {
+    console.log('e.target is', e.target)
+    if (e.target.name === 'start-season') {
+      setStartSeason(e.target.value)
+    } else {
+      setEndSeason(e.target.value)
+    }
   }
 
   return (
@@ -38,9 +45,10 @@ const InjurySearchParams = () => {
             labelId="start-season-label"
             value={startSeason}
             label="Start Season"
-            onChange={handleStartChange}
+            onChange={handleChange}
+            name="start-season"
           >
-            <MenuItem value="">All Seasons</MenuItem>
+            <MenuItem value="">Choose Season</MenuItem>
             <MenuItem value="2012-2013">2012-2013</MenuItem>
             <MenuItem value="2013-2014">2013-2014</MenuItem>
             <MenuItem value="2014-2015">2014-2015</MenuItem>
@@ -60,9 +68,10 @@ const InjurySearchParams = () => {
             labelId="end-season-label"
             value={endSeason}
             label="End Season"
-            onChange={handleEndChange}
+            onChange={handleChange}
+            name="end-season"
           >
-            <MenuItem value="">All Seasons</MenuItem>
+            <MenuItem value="">Choose Season</MenuItem>
             <MenuItem value="2012-2013">2012-2013</MenuItem>
             <MenuItem value="2013-2014">2013-2014</MenuItem>
             <MenuItem value="2014-2015">2014-2015</MenuItem>
@@ -75,7 +84,7 @@ const InjurySearchParams = () => {
             <MenuItem value="2021-2022">2021-2022</MenuItem>
           </Select>
         </FormControl>
-        <Button type="submit">Set Dates</Button>
+        <Button type="submit">Update Results</Button>
       </form>
     </div>
   )

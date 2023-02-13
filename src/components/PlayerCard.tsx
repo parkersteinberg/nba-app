@@ -73,14 +73,20 @@ const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
                 <strong>Team:</strong> {player.team.full_name}
               </li>
               <li>
-                <strong>Position:</strong> {player.position}
+                <strong>Position:</strong>{' '}
+                {player.position ? player.position : 'Not available'}
               </li>
               <li>
                 <strong>Height:</strong>{' '}
-                {`${player.height_feet}'${player.height_inches}"`}
+                {player.height_feet
+                  ? `${player.height_feet}'${player.height_inches}"`
+                  : 'Not available'}
               </li>
               <li>
-                <strong>Weight:</strong> {player.weight_pounds} lbs
+                <strong>Weight:</strong>{' '}
+                {player.weight_pounds
+                  ? `${player.weight_pounds} lbs`
+                  : 'Not available'}
               </li>
             </ul>
           </Typography>

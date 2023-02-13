@@ -1,6 +1,10 @@
+import InjuryHistorySummary from '@/components/InjuryHistorySummary'
 import InjuryHistoryTable from '@/components/InjuryHistoryTable'
 import InjurySearchParams from '@/components/InjurySearchParams'
 import PlayerCard from '@/components/PlayerCard'
+import { Box, Typography } from '@mui/material'
+import ReplayIcon from '@mui/icons-material/Replay'
+import Link from 'next/link'
 // import { queryDatabase } from '@/database/index'
 import { useRouter } from 'next/router'
 // import { GetServerSidePropsContext } from 'next'
@@ -64,15 +68,26 @@ const PlayerHome = () => {
 
   return (
     <div>
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+        <Link href="/">
+          <Typography gutterBottom variant="h6">
+            <ReplayIcon sx={{ mx: 1 }} />
+            Back to search
+          </Typography>
+        </Link>
+      </Box>
       {player ? (
         <div>
           <PlayerCard player={player} nbaPlayerId={nbaPlayerId} />
+          <br />
+          <br />
+          <InjurySearchParams />
+          <hr></hr>
+
+          <InjuryHistorySummary player={player} />
         </div>
       ) : null}
-      <br />
-      <br />
-      <InjurySearchParams />
-      <hr></hr>
+
       <button
         onClick={async () => {
           console.log('clicked')

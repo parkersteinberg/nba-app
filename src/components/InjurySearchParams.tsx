@@ -6,6 +6,7 @@ import {
   FormControl,
   Select,
   Button,
+  Typography,
 } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material/Select'
 import React, { useState } from 'react'
@@ -39,6 +40,9 @@ const InjurySearchParams = () => {
 
   return (
     <div>
+      <Typography gutterBottom variant="h5" component="div">
+        Set Date Range
+      </Typography>
       <form onSubmit={handleSubmit}>
         <FormControl sx={{ m: 1, minWidth: 140 }}>
           <InputLabel id="start-season-label">Start Season</InputLabel>

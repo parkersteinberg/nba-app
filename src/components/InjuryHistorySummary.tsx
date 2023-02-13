@@ -1,3 +1,5 @@
+import { Typography } from '@mui/material'
+
 export type Team = {
   abbreviation: string
   city: string
@@ -28,13 +30,18 @@ const InjuryHistorySummary = ({ player }: InjuryHistorySummaryProps) => {
   return (
     <div>
       <div className="injury-history-title">
-        <h2>Injury History Summary</h2>
+        <Typography gutterBottom variant="h4" component="div">
+          {`Summary of Injury History`}
+        </Typography>
       </div>
       <div className="injury-history-text">
-        <p>
-          {`${player.first_name} ${player.last_name}`} has been injured for a
-          total of XYZ days{' '}
-        </p>
+        <Typography gutterBottom variant="body1" component="div">
+          Since the <strong>{`SEASON_YEAR`} season</strong>,{' '}
+          {`${player.first_name} ${player.last_name}`} has sustained a total of{' '}
+          <strong>{`X`} injuries</strong>, has been injured for a total of{' '}
+          <strong>{`Y`} days</strong>, and has missed{' '}
+          <strong>{`Z`} games</strong>
+        </Typography>
       </div>
     </div>
   )

@@ -1,7 +1,10 @@
 import Nav from './Nav'
 import styles from '../styles/Home.module.css'
+import React from 'react'
 
-const Layout = ({ children }) => {
+type LayoutProps = { children: React.ReactNode }
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Nav />

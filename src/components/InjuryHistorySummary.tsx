@@ -1,12 +1,18 @@
 import { Typography } from '@mui/material'
 import { Player } from '@/types/types'
+import { InjuryData } from '@/types/types'
 
 type InjuryHistorySummaryProps = {
   player: Player
   // also will need to add player injury history data here
+  injuryData: InjuryData
 }
 
-const InjuryHistorySummary = ({ player }: InjuryHistorySummaryProps) => {
+const InjuryHistorySummary = ({
+  player,
+  injuryData,
+}: InjuryHistorySummaryProps) => {
+  console.log('injury data in summary is: ', injuryData)
   return (
     <div>
       <div className="injury-history-title">

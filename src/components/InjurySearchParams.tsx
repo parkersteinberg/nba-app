@@ -9,11 +9,45 @@ import {
   Typography,
 } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material/Select'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import InjuryHistorySummary from './InjuryHistorySummary'
+import InjuryHistoryTable from './InjuryHistoryTable'
+import { Player } from '@/types/types'
+import { fetchInjuryData } from '@/database/fetchInjuryData'
+import { InjuryDataRow } from '@/types/types'
 
-const InjurySearchParams = () => {
+type InjuryData = {
+  data: Array<InjuryDataRow>
+}
+
+type InjurySearchParamsProps = {
+  player: Player
+}
+
+const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
   const [startSeason, setStartSeason] = useState('')
   const [endSeason, setEndSeason] = useState('')
+  const [injuryData, setInjuryData] = useState<InjuryData | undefined>()
+
+  // on page load, get this player's injury data
+  const getInjuryData = async () => {
+    // fetch data
+    const args = {
+      playerFirstName: player.first_name,
+      playerLastName: player.last_name,
+      startSeason,
+      endSeason,
+    }
+    // set state with return data
+    const data: InjuryData | undefined = await fetchInjuryData(args)
+    console.log('data in InjurySearchParams is: ', data)
+    setInjuryData(data)
+    // pass that return data down to History Summary/Table
+  }
+
+  useEffect(() => {
+    getInjuryData()
+  }, [])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // This is going to sumbit our form and hit
@@ -91,6 +125,15 @@ const InjurySearchParams = () => {
         </FormControl>
         <Button type="submit">Update Results</Button>
       </form>
+
+      {injuryData ? (
+        <>
+          <InjuryHistorySummary player={player} injuryData={injuryData} />
+          <InjuryHistoryTable injuryData={injuryData} />
+        </>
+      ) : (
+        'Nothing to show here...'
+      )}
     </div>
   )
 }

@@ -18,3 +18,17 @@ export type Player = {
   team: Team
   weight_pounds: number
 }
+
+export type InjuryDataRow = {
+  player: string
+  team: string
+  date_placed: string
+  date_activated: string
+  injury_reason: string
+  games_missed: string
+  injury_duration: string
+}
+
+export type InjuryData = {
+  data: Array<InjuryDataRow>
+}

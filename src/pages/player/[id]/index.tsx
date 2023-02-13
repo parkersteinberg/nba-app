@@ -1,5 +1,3 @@
-import InjuryHistorySummary from '@/components/InjuryHistorySummary'
-import InjuryHistoryTable from '@/components/InjuryHistoryTable'
 import InjurySearchParams from '@/components/InjurySearchParams'
 import PlayerCard from '@/components/PlayerCard'
 import { Box, Typography } from '@mui/material'
@@ -22,8 +20,6 @@ const PlayerHome = () => {
   // this has to be called 'id' bc that's what we named it in our routing/page setup
   const router = useRouter()
   const { id } = router.query
-  // on page load, get this player's data
-
   // actually, would prob be better to pass it along in our routing?
   useEffect(() => {
     const fetchStaticPlayerData = async () => {
@@ -62,31 +58,10 @@ const PlayerHome = () => {
           <PlayerCard player={player} nbaPlayerId={nbaPlayerId} />
           <br />
           <br />
-          <InjurySearchParams />
+          <InjurySearchParams player={player} />
           <hr></hr>
-
-          <InjuryHistorySummary player={player} />
         </div>
       ) : null}
-
-      <button
-        onClick={async () => {
-          console.log('clicked')
-          const res = await fetch(
-            `/api/injury?player=${player?.first_name}+${player?.last_name}`
-          )
-          const data = await res.json()
-          console.log('data is', data)
-        }}
-      >
-        CLICK MEEEEE
-      </button>
-      <hr></hr>
-
-      <br />
-      <br />
-
-      <InjuryHistoryTable />
     </div>
   )
 }

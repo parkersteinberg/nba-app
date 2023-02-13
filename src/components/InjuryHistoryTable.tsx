@@ -1,7 +1,7 @@
 /* eslint-disable import/named */
 import { Box, Typography } from '@mui/material'
-
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
+import { InjuryData } from '@/types/types'
 
 const columns: GridColDef[] = [
   { field: 'injury', headerName: 'Injury', width: 90 },
@@ -47,7 +47,12 @@ const gridRows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ]
 
-const InjuryHistoryTable = () => {
+type InjuryHistoryTableProps = {
+  // also will need to add player injury history data here
+  injuryData: InjuryData
+}
+
+const InjuryHistoryTable = ({ injuryData }: InjuryHistoryTableProps) => {
   return (
     <div>
       {/* attempting to use DataGrid from MUI */}

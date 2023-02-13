@@ -1,19 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { queryDatabase } from '@/database'
-
-type InjuryDatRow = {
-  player: string
-  team: string
-  date_placed: string
-  date_activated: string
-  injury_reason: string
-  games_missed: string
-  injury_duration: string
-}
+import { InjuryDataRow } from '@/types/types'
 
 type InjuryData = {
-  data: Array<InjuryDatRow>
+  data: Array<InjuryDataRow>
 }
 
 export default async function handler(

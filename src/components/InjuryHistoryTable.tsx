@@ -2,8 +2,10 @@ import { Box, Typography } from '@mui/material'
 
 import {
   DataGrid,
-  GridRowsProp,
+  // GridRowsProp,
+  // eslint-disable-next-line import/named
   GridColDef,
+  // eslint-disable-next-line import/named
   GridValueGetterParams,
 } from '@mui/x-data-grid'
 

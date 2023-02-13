@@ -41,6 +41,7 @@ const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
             width={100}
             height={100}
           /> */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`}
             alt="player headshot"

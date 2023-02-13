@@ -3,10 +3,11 @@ import {
   MenuItem,
   // FormHelperText,
   FormControl,
-  SelectChangeEvent,
   Select,
   Button,
 } from '@mui/material'
+// eslint-disable-next-line import/named
+import { SelectChangeEvent } from '@mui/material/Select'
 import React, { useState } from 'react'
 
 const InjurySearchParams = () => {

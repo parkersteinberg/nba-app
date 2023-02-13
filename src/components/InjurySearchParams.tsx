@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import {
   InputLabel,
   MenuItem,
@@ -6,7 +7,6 @@ import {
   Select,
   Button,
 } from '@mui/material'
-// eslint-disable-next-line import/named
 import { SelectChangeEvent } from '@mui/material/Select'
 import React, { useState } from 'react'
 

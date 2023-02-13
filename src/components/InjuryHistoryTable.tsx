@@ -1,13 +1,7 @@
+/* eslint-disable import/named */
 import { Box, Typography } from '@mui/material'
 
-import {
-  DataGrid,
-  // GridRowsProp,
-  // eslint-disable-next-line import/named
-  GridColDef,
-  // eslint-disable-next-line import/named
-  GridValueGetterParams,
-} from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
 
 const columns: GridColDef[] = [
   { field: 'injury', headerName: 'Injury', width: 90 },

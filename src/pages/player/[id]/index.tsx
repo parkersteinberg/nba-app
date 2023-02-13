@@ -10,27 +10,7 @@ import { useRouter } from 'next/router'
 // import { GetServerSidePropsContext } from 'next'
 import { useEffect, useState } from 'react'
 const nba = require('nba-api-client')
-
-export type Team = {
-  abbreviation: string
-  city: string
-  conference: string
-  division: string
-  full_name: string
-  id: number
-  name: string
-}
-
-export type Player = {
-  first_name: string
-  height_feet: number | null
-  height_inches: number | null
-  id: number
-  last_name: string
-  position: string
-  team: Team
-  weight_pounds: number
-}
+import { Player } from '@/types/types'
 
 const PlayerHome = () => {
   // this is where we could put our useEffect (or create custom hook?) to fetch data
@@ -43,6 +23,7 @@ const PlayerHome = () => {
   const router = useRouter()
   const { id } = router.query
   // on page load, get this player's data
+
   // actually, would prob be better to pass it along in our routing?
   useEffect(() => {
     const fetchStaticPlayerData = async () => {

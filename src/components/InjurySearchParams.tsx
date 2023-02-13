@@ -25,8 +25,8 @@ type InjurySearchParamsProps = {
 }
 
 const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
-  const [startSeason, setStartSeason] = useState('')
-  const [endSeason, setEndSeason] = useState('')
+  const [startSeason, setStartSeason] = useState('2012-2013')
+  const [endSeason, setEndSeason] = useState('2021-2022')
   const [injuryData, setInjuryData] = useState<InjuryData | undefined>()
 
   // on page load, get this player's injury data
@@ -128,7 +128,11 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
 
       {injuryData ? (
         <>
-          <InjuryHistorySummary player={player} injuryData={injuryData} />
+          <InjuryHistorySummary
+            player={player}
+            injuryData={injuryData}
+            startSeason={startSeason}
+          />
           <InjuryHistoryTable injuryData={injuryData} />
         </>
       ) : (

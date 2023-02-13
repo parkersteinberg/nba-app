@@ -58,7 +58,7 @@ const InjuryHistoryTable = ({ injuryData }: InjuryHistoryTableProps) => {
       {/* attempting to use DataGrid from MUI */}
       <Box sx={{ height: 400, width: '100%' }}>
         <Typography gutterBottom variant="h4" component="div">
-          Injury History
+          Injury History Breakdown
         </Typography>
         <DataGrid
           rows={gridRows}

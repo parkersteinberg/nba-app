@@ -9,6 +9,7 @@ import {
 } from '@mui/material'
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball'
 import { Player } from '@/types/types'
+import { Box } from '@mui/system'
 
 type SearchResultsProps = {
   player: Player
@@ -17,25 +18,31 @@ type SearchResultsProps = {
 const SearchResult = ({ player }: SearchResultsProps) => {
   return (
     <div>
-      {/* <p>
-        {player.first_name} {player.last_name} - {player.team.abbreviation}
-      </p>
-      <Link href="/player/[id]" as={`/player/${player.id}`}>
-        <button>Go to player profile</button>
-      </Link> */}
-
       <List>
         <Link href="/player/[id]" as={`/player/${player.id}`}>
           <ListItem disablePadding>
             <ListItemText
               primary={`${player.first_name} ${player.last_name}`}
               secondary={`${player.team.full_name}`}
+            ></ListItemText>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'end',
+                alignItems: 'center',
+                mx: 1,
+              }}
             >
-              <button>Go to player profile</button>
-            </ListItemText>
-            <ListItemIcon>
-              <SportsBasketballIcon></SportsBasketballIcon>
-            </ListItemIcon>
+              <ListItemText
+                primary={'View player profile'}
+                sx={{
+                  mx: 1,
+                }}
+              ></ListItemText>
+              <ListItemIcon>
+                <SportsBasketballIcon></SportsBasketballIcon>
+              </ListItemIcon>
+            </Box>
           </ListItem>
           <Divider />
         </Link>

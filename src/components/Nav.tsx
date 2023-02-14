@@ -8,8 +8,10 @@ const Nav = () => {
     <Box
       sx={{
         display: 'flex',
-        m: 2,
+        mb: 2,
+        mx: 5,
         flexDirection: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
       }}
     >

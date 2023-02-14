@@ -12,6 +12,23 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
+    background: {
+      paper: '#fafafa',
+    },
+  },
+  typography: {
+    fontFamily: [
+      'Roboto',
+      'Inter',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      'Segoe UI',
+      'Helvetica',
+      'Arial',
+      'sans-serif',
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+    ].join(','),
   },
 })
 export default theme

@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import { Player } from '@/types/types'
 import { InjuryData } from '@/types/types'
 
@@ -33,11 +33,11 @@ const InjuryHistorySummary = ({
 
   return (
     <div>
-      <div className="injury-history-title">
+      <Box sx={{ my: 3 }}>
         <Typography gutterBottom variant="h4" component="div">
           {`Summary of Injury History`}
         </Typography>
-      </div>
+      </Box>
       <div className="injury-history-text">
         {numInjuries ? (
           <Typography gutterBottom variant="body1" component="div">

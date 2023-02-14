@@ -15,6 +15,7 @@ import InjuryHistoryTable from './InjuryHistoryTable'
 import { Player } from '@/types/types'
 import { fetchInjuryData } from '@/database/fetchInjuryData'
 import { InjuryDataRow } from '@/types/types'
+import { Box } from '@mui/system'
 
 type InjuryData = {
   data: Array<InjuryDataRow>
@@ -56,7 +57,6 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
   }, [])
 
   const handleChange = (e: SelectChangeEvent) => {
-    console.log('e.target is', e.target)
     if (e.target.name === 'start-season') {
       setStartSeason(e.target.value)
     } else {
@@ -66,56 +66,60 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
 
   return (
     <div>
-      <Typography gutterBottom variant="h5" component="div">
+      <Typography gutterBottom variant="h5" component="div" sx={{ mt: 3 }}>
         Set Date Range
       </Typography>
       <form onSubmit={getInjuryData}>
-        <FormControl sx={{ m: 1, minWidth: 140 }}>
-          <InputLabel id="start-season-label">Start Season</InputLabel>
-          <Select
-            labelId="start-season-label"
-            value={startSeason}
-            label="Start Season"
-            onChange={handleChange}
-            name="start-season"
-          >
-            <MenuItem value="">Choose Season</MenuItem>
-            <MenuItem value="2012-2013">2012-2013</MenuItem>
-            <MenuItem value="2013-2014">2013-2014</MenuItem>
-            <MenuItem value="2014-2015">2014-2015</MenuItem>
-            <MenuItem value="2015-2016">2015-2016</MenuItem>
-            <MenuItem value="2016-2017">2016-2017</MenuItem>
-            <MenuItem value="2017-2018">2017-2018</MenuItem>
-            <MenuItem value="2018-2019">2018-2019</MenuItem>
-            <MenuItem value="2019-2020">2019-2020</MenuItem>
-            <MenuItem value="2020-2021">2020-2021</MenuItem>
-            <MenuItem value="2021-2022">2021-2022</MenuItem>
-          </Select>
-        </FormControl>
+        <Box sx={{ display: 'flex' }}>
+          <FormControl sx={{ m: 1, minWidth: 140 }}>
+            <InputLabel id="start-season-label">Start Season</InputLabel>
+            <Select
+              labelId="start-season-label"
+              value={startSeason}
+              label="Start Season"
+              onChange={handleChange}
+              name="start-season"
+            >
+              <MenuItem value="">Choose Season</MenuItem>
+              <MenuItem value="2012-2013">2012-2013</MenuItem>
+              <MenuItem value="2013-2014">2013-2014</MenuItem>
+              <MenuItem value="2014-2015">2014-2015</MenuItem>
+              <MenuItem value="2015-2016">2015-2016</MenuItem>
+              <MenuItem value="2016-2017">2016-2017</MenuItem>
+              <MenuItem value="2017-2018">2017-2018</MenuItem>
+              <MenuItem value="2018-2019">2018-2019</MenuItem>
+              <MenuItem value="2019-2020">2019-2020</MenuItem>
+              <MenuItem value="2020-2021">2020-2021</MenuItem>
+              <MenuItem value="2021-2022">2021-2022</MenuItem>
+            </Select>
+          </FormControl>
 
-        <FormControl sx={{ m: 1, minWidth: 140 }}>
-          <InputLabel id="end-season-label">End Season</InputLabel>
-          <Select
-            labelId="end-season-label"
-            value={endSeason}
-            label="End Season"
-            onChange={handleChange}
-            name="end-season"
-          >
-            <MenuItem value="">Choose Season</MenuItem>
-            <MenuItem value="2012-2013">2012-2013</MenuItem>
-            <MenuItem value="2013-2014">2013-2014</MenuItem>
-            <MenuItem value="2014-2015">2014-2015</MenuItem>
-            <MenuItem value="2015-2016">2015-2016</MenuItem>
-            <MenuItem value="2016-2017">2016-2017</MenuItem>
-            <MenuItem value="2017-2018">2017-2018</MenuItem>
-            <MenuItem value="2018-2019">2018-2019</MenuItem>
-            <MenuItem value="2019-2020">2019-2020</MenuItem>
-            <MenuItem value="2020-2021">2020-2021</MenuItem>
-            <MenuItem value="2021-2022">2021-2022</MenuItem>
-          </Select>
-        </FormControl>
-        <Button type="submit">Update Results</Button>
+          <FormControl sx={{ m: 1, minWidth: 140 }}>
+            <InputLabel id="end-season-label">End Season</InputLabel>
+            <Select
+              labelId="end-season-label"
+              value={endSeason}
+              label="End Season"
+              onChange={handleChange}
+              name="end-season"
+            >
+              <MenuItem value="">Choose Season</MenuItem>
+              <MenuItem value="2012-2013">2012-2013</MenuItem>
+              <MenuItem value="2013-2014">2013-2014</MenuItem>
+              <MenuItem value="2014-2015">2014-2015</MenuItem>
+              <MenuItem value="2015-2016">2015-2016</MenuItem>
+              <MenuItem value="2016-2017">2016-2017</MenuItem>
+              <MenuItem value="2017-2018">2017-2018</MenuItem>
+              <MenuItem value="2018-2019">2018-2019</MenuItem>
+              <MenuItem value="2019-2020">2019-2020</MenuItem>
+              <MenuItem value="2020-2021">2020-2021</MenuItem>
+              <MenuItem value="2021-2022">2021-2022</MenuItem>
+            </Select>
+          </FormControl>
+          <Button type="submit" variant="outlined">
+            Update Results
+          </Button>
+        </Box>
       </form>
 
       {injuryData ? (

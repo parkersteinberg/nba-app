@@ -47,15 +47,6 @@ export default async function handler(
     const result = await queryDatabase(queryString, [])
     res.status(200).json({ data: result.rows })
   } catch {
-    console.log('error found!')
+    console.log('error found in injury.ts endpoint!')
   }
-
-  // queryDatabase(queryString, [])
-  //   .then((result) => {
-  //     // console.log(result)
-  //     res.status(200).json({ data: result.rows })
-  //   })
-  //   .catch((err) => {
-  //     console.log('error found!', err)
-  //   })
 }

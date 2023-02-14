@@ -24,6 +24,7 @@ const SearchResult = ({ player }: SearchResultsProps) => {
             <ListItemText
               primary={`${player.first_name} ${player.last_name}`}
               secondary={`${player.team.full_name}`}
+              data-testid="list-item"
             ></ListItemText>
             <Box
               sx={{

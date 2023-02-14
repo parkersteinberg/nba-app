@@ -41,7 +41,6 @@ export default async function handler(
   SELECT * FROM injury_logs 
   WHERE player = '${player}'
   ${dateFilter}
-  limit 20
   `
   // TODO: redo with async await syntax
   try {

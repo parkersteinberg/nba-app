@@ -1,27 +1,7 @@
 import React, { useState } from 'react'
 import SearchResult from './SearchResult'
-import { TextField, Button } from '@mui/material'
-
-export type Team = {
-  abbreviation: string
-  city: string
-  conference: string
-  division: string
-  full_name: string
-  id: number
-  name: string
-}
-
-export type Player = {
-  first_name: string
-  height_feet: number | null
-  height_inches: number | null
-  id: number
-  last_name: string
-  position: string
-  team: Team
-  weight_pounds: number
-}
+import { TextField, Button, Box, LinearProgress } from '@mui/material'
+import { Player } from '@/types/types'
 
 const SearchParams = () => {
   const [searchInput, setSearchInput] = useState('')
@@ -52,29 +32,45 @@ const SearchParams = () => {
   return (
     <div>
       <form onSubmit={handleSearchSubmit}>
-        <TextField
-          id="filled-basic"
-          label="Search For Player"
-          variant="filled"
-          onChange={handleChange}
-        />
-        <Button type="submit" variant="contained">
-          Search
-        </Button>
+        <Box
+          sx={{
+            minWidth: '500px',
+            display: 'flex',
+            justifyContent: 'space-around',
+          }}
+        >
+          <TextField
+            id="filled-basic"
+            label="Search For Player"
+            variant="filled"
+            onChange={handleChange}
+            sx={{
+              minWidth: '80%',
+              mr: 1,
+            }}
+          />
+          <Button type="submit" variant="outlined" sx={{ px: 5 }}>
+            Search
+          </Button>
+        </Box>
       </form>
 
       <div>
-        {isLoading && (
-          <div>
-            <p>Loading results...</p>
-          </div>
+        {isLoading ? (
+          <Box sx={{ my: 4, width: '100%' }}>
+            <LinearProgress />
+          </Box>
+        ) : (
+          <Box sx={{ my: 4, width: '100%' }}></Box>
         )}
       </div>
 
-      {hasResults &&
-        searchResults.map((player: Player) => {
-          return <SearchResult key={player.id} player={player} />
-        })}
+      <div>
+        {hasResults &&
+          searchResults.map((player: Player) => {
+            return <SearchResult key={player.id} player={player} />
+          })}
+      </div>
     </div>
   )
 }

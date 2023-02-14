@@ -1,45 +1,20 @@
-import InjuryHistoryTable from '@/components/InjuryHistoryTable'
 import InjurySearchParams from '@/components/InjurySearchParams'
 import PlayerCard from '@/components/PlayerCard'
-// import { queryDatabase } from '@/database/index'
+import { Box, Typography } from '@mui/material'
+import ReplayIcon from '@mui/icons-material/Replay'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-// import { GetServerSidePropsContext } from 'next'
 import { useEffect, useState } from 'react'
 const nba = require('nba-api-client')
-
-export type Team = {
-  abbreviation: string
-  city: string
-  conference: string
-  division: string
-  full_name: string
-  id: number
-  name: string
-}
-
-export type Player = {
-  first_name: string
-  height_feet: number | null
-  height_inches: number | null
-  id: number
-  last_name: string
-  position: string
-  team: Team
-  weight_pounds: number
-}
+import { Player } from '@/types/types'
 
 const PlayerHome = () => {
-  // this is where we could put our useEffect (or create custom hook?) to fetch data
-  // console.log('access props? ', props)
-
   const [player, setPlayer] = useState<Player | undefined>()
   const [nbaPlayerId, setNbaPlayerId] = useState('')
 
-  // this has to be called 'id' bc that's what we named it in our routing/page setup
   const router = useRouter()
   const { id } = router.query
-  // on page load, get this player's data
-  // actually, would prob be better to pass it along in our routing?
+
   useEffect(() => {
     const fetchStaticPlayerData = async () => {
       const res = await fetch(`https://www.balldontlie.io/api/v1/players/${id}`)
@@ -64,33 +39,23 @@ const PlayerHome = () => {
 
   return (
     <div>
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+        <Link href="/">
+          <Box sx={{ display: 'flex' }}>
+            <ReplayIcon sx={{ mr: 1, mb: 2 }} />
+            <Typography gutterBottom variant="h6">
+              Start a new search
+            </Typography>
+          </Box>
+        </Link>
+      </Box>
       {player ? (
-        <div>
+        <Box>
           <PlayerCard player={player} nbaPlayerId={nbaPlayerId} />
-        </div>
+          <InjurySearchParams player={player} />
+          <hr></hr>
+        </Box>
       ) : null}
-      <br />
-      <br />
-      <InjurySearchParams />
-      <hr></hr>
-      <button
-        onClick={async () => {
-          console.log('clicked')
-          const res = await fetch(
-            `/api/injury?player=${player?.first_name}+${player?.last_name}`
-          )
-          const data = await res.json()
-          console.log('data is', data)
-        }}
-      >
-        CLICK MEEEEE
-      </button>
-      <hr></hr>
-
-      <br />
-      <br />
-
-      <InjuryHistoryTable />
     </div>
   )
 }

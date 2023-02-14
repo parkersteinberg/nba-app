@@ -27,10 +27,15 @@ type InjurySearchParamsProps = {
 const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
   const [startSeason, setStartSeason] = useState('2012-2013')
   const [endSeason, setEndSeason] = useState('2021-2022')
+  const [injurySummaryYear, setInjurySummaryYear] = useState('2012-2013')
   const [injuryData, setInjuryData] = useState<InjuryData | undefined>()
 
   // on page load, get this player's injury data
-  const getInjuryData = async () => {
+  const getInjuryData = async (e?: React.FormEvent<HTMLFormElement>) => {
+    if (e) e.preventDefault()
+    // set injurySummaryYear
+    setInjurySummaryYear(startSeason)
+
     // fetch data
     const args = {
       playerFirstName: player.first_name,
@@ -47,21 +52,8 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
 
   useEffect(() => {
     getInjuryData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // This is going to sumbit our form and hit
-    // the API that queries our Sql db and sets
-    // injury history table
-    e.preventDefault()
-    console.log(
-      `start date is ${startSeason.slice(0, 4)}, end date is ${endSeason.slice(
-        0,
-        4
-      )}`
-    )
-    console.log('submitted!')
-  }
 
   const handleChange = (e: SelectChangeEvent) => {
     console.log('e.target is', e.target)
@@ -77,7 +69,7 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
       <Typography gutterBottom variant="h5" component="div">
         Set Date Range
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={getInjuryData}>
         <FormControl sx={{ m: 1, minWidth: 140 }}>
           <InputLabel id="start-season-label">Start Season</InputLabel>
           <Select
@@ -131,12 +123,12 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
           <InjuryHistorySummary
             player={player}
             injuryData={injuryData}
-            startSeason={startSeason}
+            injurySummaryYear={injurySummaryYear}
           />
           <InjuryHistoryTable injuryData={injuryData} />
         </>
       ) : (
-        'Nothing to show here...'
+        'Injury History Loading...'
       )}
     </div>
   )

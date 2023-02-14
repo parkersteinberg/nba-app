@@ -6,28 +6,30 @@ type InjuryHistorySummaryProps = {
   player: Player
   // also will need to add player injury history data here
   injuryData: InjuryData
-  startSeason: string
+  injurySummaryYear: string
 }
 
 const InjuryHistorySummary = ({
   player,
   injuryData,
-  startSeason,
+  injurySummaryYear,
 }: InjuryHistorySummaryProps) => {
   console.log('injury data in summary is: ', injuryData)
   // do some calculations upon render for summary stats
   const { data } = injuryData
+  let totalDaysMissed: number | null = null
+  let totalGamesMissed: number | null = null
   const numInjuries = data.length
-  const daysMissedArr = data.map((injury) => Number(injury.injury_duration))
-  const gamesMissedArr = data.map((injury) => Number(injury.games_missed))
-  const totalDaysMissed: number = daysMissedArr.reduce((acc, curr): number => {
-    return acc + curr
-  })
-  const totalGamesMissed: number = gamesMissedArr.reduce(
-    (acc, curr): number => {
+  if (numInjuries) {
+    const daysMissedArr = data.map((injury) => Number(injury.injury_duration))
+    const gamesMissedArr = data.map((injury) => Number(injury.games_missed))
+    totalDaysMissed = daysMissedArr.reduce((acc, curr): number => {
       return acc + curr
-    }
-  )
+    })
+    totalGamesMissed = gamesMissedArr.reduce((acc, curr): number => {
+      return acc + curr
+    })
+  }
 
   return (
     <div>
@@ -37,16 +39,19 @@ const InjuryHistorySummary = ({
         </Typography>
       </div>
       <div className="injury-history-text">
-        <Typography gutterBottom variant="body1" component="div">
-          {/* MAYBE COME BACK AND MAKE DATES DYNAMIC */}
-          Since the <strong>{`${startSeason} season`}</strong>
-          {`, `}
-          <strong>{`${player.first_name} ${player.last_name}`}</strong> has
-          sustained a total of <strong>{`${numInjuries} injuries`}</strong>, has
-          been injured for a total of{' '}
-          <strong>{`${totalDaysMissed}`} days</strong>, and has missed{' '}
-          <strong>{`${totalGamesMissed}`} games</strong>
-        </Typography>
+        {numInjuries ? (
+          <Typography gutterBottom variant="body1" component="div">
+            Since the <strong>{`${injurySummaryYear} season`}</strong>
+            {`, `}
+            <strong>{`${player.first_name} ${player.last_name}`}</strong> has
+            sustained a total of <strong>{`${numInjuries} injuries`}</strong>,
+            has been injured for a total of{' '}
+            <strong>{`${totalDaysMissed}`} days</strong>, and has missed{' '}
+            <strong>{`${totalGamesMissed}`} games</strong>
+          </Typography>
+        ) : (
+          'No injuries found'
+        )}
       </div>
     </div>
   )

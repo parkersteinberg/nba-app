@@ -31,7 +31,7 @@ const SearchParams = () => {
 
   return (
     <div>
-      <form onSubmit={handleSearchSubmit}>
+      <form onSubmit={handleSearchSubmit} data-testid="search-params-form">
         <Box
           sx={{
             minWidth: '500px',

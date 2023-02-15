@@ -56,11 +56,11 @@ const PlayerHome = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/basketball_icon.svg" />
       </Head>
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ mb: 2 }}>
         <Link href="/">
-          <Box sx={{ display: 'flex' }}>
-            <ReplayIcon sx={{ mr: 1, mb: 2 }} />
-            <Typography gutterBottom variant="h6">
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <ReplayIcon sx={{ mr: 1 }} />
+            <Typography gutterBottom variant="h6" sx={{ mt: 1 }}>
               Start a new search
             </Typography>
           </Box>

@@ -8,7 +8,7 @@ import {
   Box,
 } from '@mui/material'
 import { Player } from '@/types/types'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { fetchDurabilityScore } from '@/database/fetchDurabilityScore'
 // import Image from 'next/image'
 
@@ -21,11 +21,22 @@ const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
   const [durabilityScore, setDurabilityScore] = useState('')
 
   // setting image URL for player avatar
+  const defaultImageUrl = '/nba_logo2.png'
   let imageStringUrl = ''
+  // accounting for broken image urls
+  const replaceImageUrl = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    const event = e.target as HTMLImageElement
+    event.src = defaultImageUrl
+    event.style.borderRadius = '5%'
+    event.style.transform = 'scale(0.8)'
+  }
+
   if (nbaPlayerId) {
     imageStringUrl = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`
   } else {
-    imageStringUrl = '/nba_logo2.png'
+    imageStringUrl = defaultImageUrl
   }
 
   const getDurabilityScore = async () => {
@@ -63,6 +74,7 @@ const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
                   ? { borderRadius: '50%', transform: 'scale(0.8)' }
                   : { borderRadius: '5%', transform: 'scale(0.8)' }
               }
+              onError={replaceImageUrl}
             />
           </CardMedia>
         </Box>

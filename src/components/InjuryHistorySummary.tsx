@@ -39,6 +39,7 @@ const InjuryHistorySummary = ({
         flexDirection: 'column',
         alignItems: 'center',
         mt: 5,
+        maxWidth: '80%',
       }}
     >
       <Box sx={{ mt: 2, px: 3 }}>
@@ -46,7 +47,7 @@ const InjuryHistorySummary = ({
           {`Summary of Injury History`}
         </Typography>
       </Box>
-      <Box sx={{ maxWidth: '80%', mb: 2 }}>
+      <Box sx={{ maxWidth: '90%', mb: 2 }}>
         {numInjuries ? (
           <Typography gutterBottom variant="body1" component="div">
             Between the{' '}

@@ -1,4 +1,4 @@
-import { Typography, Box } from '@mui/material'
+import { Typography, Box, Card } from '@mui/material'
 import { Player } from '@/types/types'
 import { InjuryData } from '@/types/types'
 
@@ -31,15 +31,20 @@ const InjuryHistorySummary = ({
   }
 
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        mt: 5,
+      }}
     >
-      <Box sx={{ mt: 6 }}>
+      <Box sx={{ mt: 2, px: 3 }}>
         <Typography gutterBottom variant="h4" component="div">
           {`Summary of Injury History`}
         </Typography>
       </Box>
-      <Box sx={{ maxWidth: '80%' }}>
+      <Box sx={{ maxWidth: '80%', mb: 2 }}>
         {numInjuries ? (
           <Typography gutterBottom variant="body1" component="div">
             Since the <strong>{`${injurySummaryYear} season`}</strong>
@@ -54,7 +59,7 @@ const InjuryHistorySummary = ({
           'No injuries found'
         )}
       </Box>
-    </Box>
+    </Card>
   )
 }
 

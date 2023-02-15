@@ -76,7 +76,7 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
       <Typography gutterBottom variant="h5" component="div" sx={{ mt: 3 }}>
         Set Date Range
         <Tooltip
-          title="Injury data current ranges from the 2012-2013 season through the 2021-2022 season"
+          title="Injury data currently ranges from the 2012-2013 season through the 2021-2022 season"
           placement="top"
         >
           <IconButton sx={{ transform: 'scale(0.9)' }}>

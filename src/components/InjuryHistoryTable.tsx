@@ -83,12 +83,14 @@ const InjuryHistoryTable = ({ injuryData }: InjuryHistoryTableProps) => {
             height: 500,
             minWidth: 800,
             my: 6,
+            // display: 'flex',
+            // flexDirection: 'column',
           }}
         >
           <Typography gutterBottom variant="h4" component="div">
             Injury History Breakdown
             <Tooltip
-              title="Sort, filter, or customize columns you want to view in this table by clicking the menu icon at the header of any column"
+              title="Sort, filter, or customize columns to view in this table by clicking the menu icon at the header of any column"
               placement="top"
             >
               <IconButton sx={{ transform: 'scale(0.9)' }}>

@@ -8,6 +8,8 @@ import {
   Box,
 } from '@mui/material'
 import { Player } from '@/types/types'
+import { useEffect, useState } from 'react'
+import { fetchDurabilityScore } from '@/database/fetchDurabilityScore'
 // import Image from 'next/image'
 
 type PlayerCardProps = {
@@ -16,6 +18,34 @@ type PlayerCardProps = {
 }
 
 const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
+  const [durabilityScore, setDurabilityScore] = useState('')
+
+  // add ternary for image string url
+  // if playerID exists, then nba url
+  // else, default NBA logo
+  let imageStringUrl = ''
+  console.log('NBA PLAYER ID IN CARD IS: ', nbaPlayerId)
+  if (nbaPlayerId) {
+    imageStringUrl = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`
+  } else {
+    imageStringUrl = '/nba_logo2.png'
+  }
+
+  const getDurabilityScore = async () => {
+    console.log('NOW player is', player.id)
+    const score = await fetchDurabilityScore({
+      playerFirstName: player.first_name,
+      playerLastName: player.last_name,
+      playerId: player.id,
+    })
+    setDurabilityScore(score)
+  }
+
+  useEffect(() => {
+    getDurabilityScore()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       {/* material ui */}
@@ -30,9 +60,13 @@ const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
           /> */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`}
+              src={imageStringUrl}
               alt="player headshot"
-              style={{ borderRadius: '50%', transform: 'scale(0.8)' }}
+              style={
+                nbaPlayerId
+                  ? { borderRadius: '50%', transform: 'scale(0.8)' }
+                  : { borderRadius: '5%', transform: 'scale(0.8)' }
+              }
             />
           </CardMedia>
         </Box>
@@ -52,7 +86,7 @@ const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
                 </IconButton>
               </Tooltip>
               {': '}
-              {'A-'}
+              {durabilityScore}
             </strong>
           </Typography>
           <Typography

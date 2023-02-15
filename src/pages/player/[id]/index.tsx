@@ -21,7 +21,8 @@ const PlayerHome = () => {
       const data = await res.json()
       console.log('data is', data)
       // return data
-      setPlayer({ player, ...data })
+      await setPlayer({ player, ...data })
+      console.log('player is now', player)
       // get nba player id for headshot
     }
     fetchStaticPlayerData()
@@ -31,9 +32,13 @@ const PlayerHome = () => {
 
   useEffect(() => {
     if (player) {
-      setNbaPlayerId(
-        nba.getPlayerID(`${player.first_name} ${player.last_name}`).PlayerID
-      )
+      // TODO: set id based on whether it exists
+      const updatedId = nba.getPlayerID(
+        `${player.first_name} ${player.last_name}`
+      )?.PlayerID
+      if (updatedId) {
+        setNbaPlayerId(updatedId)
+      }
     }
   }, [player])
 

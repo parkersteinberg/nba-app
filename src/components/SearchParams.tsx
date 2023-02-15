@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import SearchResult from './SearchResult'
-import { TextField, Button, Box, LinearProgress } from '@mui/material'
+import {
+  TextField,
+  Button,
+  Box,
+  LinearProgress,
+  Typography,
+} from '@mui/material'
 import { Player } from '@/types/types'
 
 const SearchParams = () => {
@@ -22,7 +28,13 @@ const SearchParams = () => {
     )
     console.log(`rest is ${res}`)
     const { data } = await res.json()
-    console.log(data)
+    console.log('data in SearchParams: ', data)
+
+    data.sort((a: Player, b: Player) =>
+      `${a.first_name} ${a.last_name}` > `${b.first_name} ${b.last_name}`
+        ? 1
+        : -1
+    )
 
     setHasResults(true)
     setSearchResults(data)
@@ -66,6 +78,13 @@ const SearchParams = () => {
       </div>
 
       <div>
+        {hasResults && searchResults.length === 0 && (
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Typography variant="h6" component="div">
+              No players found. Try searching again
+            </Typography>
+          </Box>
+        )}
         {hasResults &&
           searchResults.map((player: Player) => {
             return <SearchResult key={player.id} player={player} />

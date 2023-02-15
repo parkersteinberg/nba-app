@@ -14,7 +14,6 @@ const InjuryHistorySummary = ({
   injuryData,
   injurySummaryYear,
 }: InjuryHistorySummaryProps) => {
-  console.log('injury data in summary is: ', injuryData)
   // do some calculations upon render for summary stats
   const { data } = injuryData
   let totalDaysMissed: number | null = null

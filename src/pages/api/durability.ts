@@ -11,7 +11,7 @@ export default async function handler(
   res: NextApiResponse<GamesMissed>
 ) {
   const { player } = req.query
-  console.log('IN duability.ts endpoint..........')
+  console.log('IN durability.ts endpoint..........')
 
   console.log(player)
 
@@ -26,5 +26,6 @@ export default async function handler(
     res.status(200).json({ games_missed: result.rows[0].sum })
   } catch {
     console.log('error found in durability.ts endpoint!')
+    res.status(404).json({ games_missed: '0' })
   }
 }

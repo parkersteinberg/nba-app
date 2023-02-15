@@ -46,9 +46,7 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
     }
     // set state with return data
     const data: InjuryData | undefined = await fetchInjuryData(args)
-    console.log('data in InjurySearchParams is: ', data)
     setInjuryData(data)
-    // pass that return data down to History Summary/Table
   }
 
   useEffect(() => {

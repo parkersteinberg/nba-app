@@ -3,6 +3,7 @@ import { server } from '../config/index'
 export type fetchDurabilityScoreArgs = {
   playerFirstName: string
   playerLastName: string
+  playerId: number
 }
 
 // input: player
@@ -10,26 +11,50 @@ export type fetchDurabilityScoreArgs = {
 export const fetchDurabilityScore = async (
   args: fetchDurabilityScoreArgs
 ): Promise<string> => {
-  console.log('fetchDurabilityScore running')
+  const { playerFirstName, playerLastName, playerId } = args
 
-  // TODO: get first year player entered league
-  // multiply years from then to 2021 season (or if they were drafted before 2012, use 2012)
-  // if they were drafted after 2012, use that year
-  // all players should be viewed up until 2021
-  // hit balldontlie api for this to get their drafted year / first season in the leageu
-
-  // get total number of games missed due to injury
-  // TODO: check that this data returned is correct
-  const res = await fetch(
-    `${server}/api/durability?player=${args.playerFirstName}+${args.playerLastName}`
+  // getting player's first season in league
+  const resData = await fetch(
+    `https://www.balldontlie.io/api/v1/stats?player_ids[]=${playerId}`
   )
-  const data = await res.json()
+  console.log('RES ISSSSSS: ', resData)
+  const { data } = await resData.json()
+  console.log('player data', data)
+  // need a better way to get first season
+  const firstGameSeason = Number(data[1].game.season)
 
-  // TODO: calculate durability score
-  // divide data (total games missed) by potential games player
-  // based on this percentage, assign durability score and return
+  // limiting scope of Durability score from 2012-2021 season (10 seasons)
+  const startSeason = firstGameSeason < 2012 ? 2012 : firstGameSeason
+  console.log('startSeason is', startSeason)
+
+  const endSeason = 2021
+  // get total number of games missed due to injury
+  const res = await fetch(
+    `${server}/api/durability?player=${playerFirstName}+${playerLastName}`
+  )
+  const { games_missed } = await res.json()
+
+  // CALCULATE DURABILITY SCORE
+  const percentGamesMissed =
+    (Number(games_missed) / ((endSeason - startSeason + 1) * 82)) * 100
+
+  console.log('%age games missed', percentGamesMissed)
+  let durabilityScore = ''
+
+  // assigning letter grade
+  if (percentGamesMissed < 10) durabilityScore += 'A'
+  else if (percentGamesMissed < 20) durabilityScore += 'B'
+  else if (percentGamesMissed < 30) durabilityScore += 'C'
+  else if (percentGamesMissed < 40) durabilityScore += 'D'
+  else durabilityScore += 'F'
+
+  // assigning + or - to letter grade
+  if (percentGamesMissed % 10 > 0 && percentGamesMissed % 10 < 4)
+    durabilityScore += '+'
+  else if (percentGamesMissed % 10 > 6 && percentGamesMissed % 10 < 10)
+    durabilityScore += '-'
 
   return new Promise((resolve) => {
-    resolve(data)
+    resolve(durabilityScore)
   })
 }

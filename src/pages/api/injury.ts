@@ -48,5 +48,6 @@ export default async function handler(
     res.status(200).json({ data: result.rows })
   } catch {
     console.log('error found in injury.ts endpoint!')
+    res.status(404).json({ data: [] })
   }
 }

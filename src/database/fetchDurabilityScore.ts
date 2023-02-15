@@ -40,7 +40,8 @@ export const fetchDurabilityScore = async (
   let durabilityScore = ''
 
   // assigning letter grade
-  if (percentGamesMissed < 10) durabilityScore += 'A'
+  if (percentGamesMissed === 0) durabilityScore += 'N/A'
+  else if (percentGamesMissed < 10) durabilityScore += 'A'
   else if (percentGamesMissed < 20) durabilityScore += 'B'
   else if (percentGamesMissed < 30) durabilityScore += 'C'
   else if (percentGamesMissed < 40) durabilityScore += 'D'

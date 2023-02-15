@@ -1,4 +1,4 @@
-import { Typography, Box } from '@mui/material'
+import { Typography, Box, Card } from '@mui/material'
 import { Player } from '@/types/types'
 import { InjuryData } from '@/types/types'
 
@@ -6,13 +6,15 @@ type InjuryHistorySummaryProps = {
   player: Player
   // also will need to add player injury history data here
   injuryData: InjuryData
-  injurySummaryYear: string
+  injurySummaryStartYear: string
+  injurySummaryEndYear: string
 }
 
 const InjuryHistorySummary = ({
   player,
   injuryData,
-  injurySummaryYear,
+  injurySummaryStartYear,
+  injurySummaryEndYear,
 }: InjuryHistorySummaryProps) => {
   // do some calculations upon render for summary stats
   const { data } = injuryData
@@ -31,18 +33,28 @@ const InjuryHistorySummary = ({
   }
 
   return (
-    <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    <Card
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        mt: 5,
+        maxWidth: '80%',
+      }}
     >
-      <Box sx={{ mt: 6 }}>
+      <Box sx={{ mt: 2, px: 3 }}>
         <Typography gutterBottom variant="h4" component="div">
           {`Summary of Injury History`}
         </Typography>
       </Box>
-      <Box sx={{ maxWidth: '80%' }}>
+      <Box sx={{ maxWidth: '90%', mb: 2 }}>
         {numInjuries ? (
           <Typography gutterBottom variant="body1" component="div">
-            Since the <strong>{`${injurySummaryYear} season`}</strong>
+            Between the{' '}
+            <strong>
+              {`${injurySummaryStartYear}`} and{' '}
+              {`${injurySummaryEndYear} seasons`}
+            </strong>
             {`, `}
             <strong>{`${player.first_name} ${player.last_name}`}</strong> has
             sustained a total of <strong>{`${numInjuries} injuries`}</strong>,
@@ -54,7 +66,7 @@ const InjuryHistorySummary = ({
           'No injuries found'
         )}
       </Box>
-    </Box>
+    </Card>
   )
 }
 

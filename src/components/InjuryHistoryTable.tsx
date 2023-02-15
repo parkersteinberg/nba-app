@@ -1,6 +1,7 @@
 /* eslint-disable import/named */
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Tooltip, IconButton } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import InfoIcon from '@mui/icons-material/Info'
 import { InjuryData } from '@/types/types'
 
 // colunm schema:
@@ -8,10 +9,26 @@ import { InjuryData } from '@/types/types'
 // days injured, games missed
 const columns: GridColDef[] = [
   { field: 'injury', headerName: 'Injury', width: 200 },
+
   {
     field: 'team',
     headerName: 'Team',
     width: 100,
+  },
+  {
+    field: 'games_missed',
+    headerName: 'Games missed',
+    description: 'Total games missed due to injury.',
+    type: 'number',
+    width: 130,
+  },
+  {
+    field: 'days_missed',
+    headerName: 'Days injured',
+    description:
+      'Total number of days missed (during the season) due to injury.',
+    type: 'number',
+    width: 130,
   },
   {
     field: 'date_placed',
@@ -24,21 +41,6 @@ const columns: GridColDef[] = [
     headerName: 'Date activated from IL',
     type: 'string', // maybe make this type date??
     width: 170,
-  },
-  {
-    field: 'days_missed',
-    headerName: 'Days injured',
-    description:
-      'Total number of days missed (during the season) due to injury.',
-    type: 'number',
-    width: 130,
-  },
-  {
-    field: 'games_missed',
-    headerName: 'Games missed',
-    description: 'Total games missed due to injury.',
-    type: 'number',
-    width: 130,
   },
 ]
 
@@ -76,9 +78,23 @@ const InjuryHistoryTable = ({ injuryData }: InjuryHistoryTableProps) => {
   return (
     <div>
       {gridRows ? (
-        <Box sx={{ height: 400, width: '100%', my: 6 }}>
+        <Box
+          sx={{
+            height: 500,
+            minWidth: 800,
+            my: 6,
+          }}
+        >
           <Typography gutterBottom variant="h4" component="div">
             Injury History Breakdown
+            <Tooltip
+              title="Sort, filter, or customize columns you want to view in this table by clicking the menu icon at the header of any column"
+              placement="top"
+            >
+              <IconButton sx={{ transform: 'scale(0.9)' }}>
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
           </Typography>
           <DataGrid
             rows={gridRows}

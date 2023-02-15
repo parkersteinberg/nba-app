@@ -46,7 +46,7 @@ const SearchParams = () => {
       <form onSubmit={handleSearchSubmit} data-testid="search-params-form">
         <Box
           sx={{
-            minWidth: '500px',
+            minWidth: '300px',
             display: 'flex',
             justifyContent: 'space-around',
           }}

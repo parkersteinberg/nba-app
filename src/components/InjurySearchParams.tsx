@@ -1,12 +1,14 @@
 /* eslint-disable import/named */
+import InfoIcon from '@mui/icons-material/Info'
 import {
   InputLabel,
   MenuItem,
-  // FormHelperText,
+  IconButton,
+  Tooltip,
+  Typography,
   FormControl,
   Select,
   Button,
-  Typography,
 } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material/Select'
 import React, { useEffect, useState } from 'react'
@@ -63,9 +65,24 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
   }
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Typography gutterBottom variant="h5" component="div" sx={{ mt: 3 }}>
         Set Date Range
+        <Tooltip
+          title="Injury data current ranges from the 2012-2013 season through the 2021-2022 season"
+          placement="top"
+        >
+          <IconButton sx={{ transform: 'scale(0.9)' }}>
+            <InfoIcon />
+          </IconButton>
+        </Tooltip>
       </Typography>
       <form onSubmit={getInjuryData}>
         <Box sx={{ display: 'flex' }}>
@@ -132,7 +149,7 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
       ) : (
         'Injury History Loading...'
       )}
-    </div>
+    </Box>
   )
 }
 

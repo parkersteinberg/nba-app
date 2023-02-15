@@ -17,10 +17,8 @@ export const fetchDurabilityScore = async (
   const resData = await fetch(
     `https://www.balldontlie.io/api/v1/stats?player_ids[]=${playerId}`
   )
-  console.log('RES ISSSSSS: ', resData)
   const { data } = await resData.json()
-  console.log('player data', data)
-  // need a better way to get first season
+  // get first season (can be improved)
   const firstGameSeason = Number(data[1].game.season)
 
   // limiting scope of Durability score from 2012-2021 season (10 seasons)

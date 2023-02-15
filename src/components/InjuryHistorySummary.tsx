@@ -31,13 +31,15 @@ const InjuryHistorySummary = ({
   }
 
   return (
-    <div>
-      <Box sx={{ my: 3 }}>
+    <Box
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
+      <Box sx={{ mt: 6 }}>
         <Typography gutterBottom variant="h4" component="div">
           {`Summary of Injury History`}
         </Typography>
       </Box>
-      <div className="injury-history-text">
+      <Box sx={{ maxWidth: '80%' }}>
         {numInjuries ? (
           <Typography gutterBottom variant="body1" component="div">
             Since the <strong>{`${injurySummaryYear} season`}</strong>
@@ -51,8 +53,8 @@ const InjuryHistorySummary = ({
         ) : (
           'No injuries found'
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

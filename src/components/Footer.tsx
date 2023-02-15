@@ -4,7 +4,14 @@ import { Box } from '@mui/system'
 const Footer = () => {
   return (
     <Box
-      sx={{ display: 'flex', mb: 2, mx: 5, justifyContent: 'space-between' }}
+      sx={{
+        display: 'flex',
+        mb: 3,
+        justifyContent: 'space-around',
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+      }}
     >
       <Typography variant="body2">
         Built by{` `}

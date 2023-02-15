@@ -20,11 +20,8 @@ type PlayerCardProps = {
 const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
   const [durabilityScore, setDurabilityScore] = useState('')
 
-  // add ternary for image string url
-  // if playerID exists, then nba url
-  // else, default NBA logo
+  // setting image URL for player avatar
   let imageStringUrl = ''
-  console.log('NBA PLAYER ID IN CARD IS: ', nbaPlayerId)
   if (nbaPlayerId) {
     imageStringUrl = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`
   } else {
@@ -32,7 +29,6 @@ const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
   }
 
   const getDurabilityScore = async () => {
-    console.log('NOW player is', player.id)
     const score = await fetchDurabilityScore({
       playerFirstName: player.first_name,
       playerLastName: player.last_name,
@@ -78,7 +74,7 @@ const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
             <strong>
               Durability Score
               <Tooltip
-                title="Durability Score is calculated based on the percentage of games that this player has played compared to the total number of games that the player's team played in"
+                title="Durability Score is calculated based on a player's percentage of games played compared to their team's total games played"
                 placement="top"
               >
                 <IconButton sx={{ transform: 'scale(0.9)' }}>

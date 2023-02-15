@@ -19,11 +19,8 @@ const PlayerHome = () => {
     const fetchStaticPlayerData = async () => {
       const res = await fetch(`https://www.balldontlie.io/api/v1/players/${id}`)
       const data = await res.json()
-      console.log('data is', data)
       // return data
       await setPlayer({ player, ...data })
-      console.log('player is now', player)
-      // get nba player id for headshot
     }
     fetchStaticPlayerData()
 
@@ -32,7 +29,6 @@ const PlayerHome = () => {
 
   useEffect(() => {
     if (player) {
-      // TODO: set id based on whether it exists
       const updatedId = nba.getPlayerID(
         `${player.first_name} ${player.last_name}`
       )?.PlayerID
@@ -43,7 +39,13 @@ const PlayerHome = () => {
   }, [player])
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
         <Link href="/">
           <Box sx={{ display: 'flex' }}>
@@ -55,13 +57,13 @@ const PlayerHome = () => {
         </Link>
       </Box>
       {player ? (
-        <Box>
+        <Box sx={{ minWidth: '80%' }}>
           <PlayerCard player={player} nbaPlayerId={nbaPlayerId} />
           <InjurySearchParams player={player} />
           <hr></hr>
         </Box>
       ) : null}
-    </div>
+    </Box>
   )
 }
 

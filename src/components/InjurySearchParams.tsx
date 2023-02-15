@@ -30,14 +30,17 @@ type InjurySearchParamsProps = {
 const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
   const [startSeason, setStartSeason] = useState('2012-2013')
   const [endSeason, setEndSeason] = useState('2021-2022')
-  const [injurySummaryYear, setInjurySummaryYear] = useState('2012-2013')
+  const [injurySummaryStartYear, setinjurySummaryStartYear] =
+    useState('2012-2013')
+  const [injurySummaryEndYear, setinjurySummaryEndYear] = useState('2021-2022')
   const [injuryData, setInjuryData] = useState<InjuryData | undefined>()
 
   // on page load, get this player's injury data
   const getInjuryData = async (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault()
-    // set injurySummaryYear
-    setInjurySummaryYear(startSeason)
+    // set injurySummaryStartYear
+    setinjurySummaryStartYear(startSeason)
+    setinjurySummaryEndYear(endSeason)
 
     // fetch data
     const args = {
@@ -76,7 +79,7 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
       <Typography gutterBottom variant="h5" component="div" sx={{ mt: 3 }}>
         Set Date Range
         <Tooltip
-          title="Injury data currently ranges from the 2012-2013 season through the 2021-2022 season"
+          title="Injury data available from the 2012-2013 season through the 2021-2022 season. Use the drop-down menu to filter this player's injury history"
           placement="top"
         >
           <IconButton sx={{ transform: 'scale(0.9)' }}>
@@ -142,7 +145,8 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
           <InjuryHistorySummary
             player={player}
             injuryData={injuryData}
-            injurySummaryYear={injurySummaryYear}
+            injurySummaryStartYear={injurySummaryStartYear}
+            injurySummaryEndYear={injurySummaryEndYear}
           />
           <InjuryHistoryTable injuryData={injuryData} />
         </>

@@ -6,13 +6,15 @@ type InjuryHistorySummaryProps = {
   player: Player
   // also will need to add player injury history data here
   injuryData: InjuryData
-  injurySummaryYear: string
+  injurySummaryStartYear: string
+  injurySummaryEndYear: string
 }
 
 const InjuryHistorySummary = ({
   player,
   injuryData,
-  injurySummaryYear,
+  injurySummaryStartYear,
+  injurySummaryEndYear,
 }: InjuryHistorySummaryProps) => {
   // do some calculations upon render for summary stats
   const { data } = injuryData
@@ -47,7 +49,11 @@ const InjuryHistorySummary = ({
       <Box sx={{ maxWidth: '80%', mb: 2 }}>
         {numInjuries ? (
           <Typography gutterBottom variant="body1" component="div">
-            Since the <strong>{`${injurySummaryYear} season`}</strong>
+            Between the{' '}
+            <strong>
+              {`${injurySummaryStartYear}`} and{' '}
+              {`${injurySummaryEndYear} seasons`}
+            </strong>
             {`, `}
             <strong>{`${player.first_name} ${player.last_name}`}</strong> has
             sustained a total of <strong>{`${numInjuries} injuries`}</strong>,

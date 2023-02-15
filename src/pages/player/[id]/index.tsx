@@ -57,10 +57,9 @@ const PlayerHome = () => {
         </Link>
       </Box>
       {player ? (
-        <Box sx={{ minWidth: '80%' }}>
+        <Box sx={{ minWidth: '80%', mb: 6 }}>
           <PlayerCard player={player} nbaPlayerId={nbaPlayerId} />
           <InjurySearchParams player={player} />
-          <hr></hr>
         </Box>
       ) : null}
     </Box>

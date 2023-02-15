@@ -14,8 +14,6 @@ export default function Home() {
           content="Injury Insights, basketball analytics"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* TODO: change icon */}
-        {/* <link rel="icon" href="/favicon.ico" /> */}
         <link rel="icon" href="/basketball_icon.svg" />
       </Head>
       <main className={styles.main} data-testid="home-main">
@@ -25,7 +23,7 @@ export default function Home() {
             flexDirection: 'column',
             justifyContent: 'center',
             textAlign: 'center',
-            mb: 10,
+            mb: 8,
             maxWidth: '80%',
             // minWidth: '400px',
           }}

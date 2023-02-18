@@ -11,7 +11,6 @@ export type fetchInjuryDataArgs = {
 export const fetchInjuryData = async (
   args: fetchInjuryDataArgs
 ): Promise<InjuryData> => {
-  console.log('fetchInjuryData running')
   const startYear = args.startSeason.slice(0, 4)
   const endYear = args.endSeason.slice(0, 4)
   const res = await fetch(

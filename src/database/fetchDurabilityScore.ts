@@ -18,27 +18,23 @@ export const fetchDurabilityScore = async (
     `https://www.balldontlie.io/api/v1/stats?player_ids[]=${playerId}`
   )
   const { data } = await resData.json()
-  // get first season (can be improved)
   const firstGameSeason = Number(data[1].game.season)
 
   // limiting scope of Durability score from 2012-2021 season (10 seasons)
   const startSeason = firstGameSeason < 2012 ? 2012 : firstGameSeason
-  console.log('startSeason is', startSeason)
-
   const endSeason = 2021
+
   // get total number of games missed due to injury
   const res = await fetch(
     `${server}/api/durability?player=${playerFirstName}+${playerLastName}`
   )
   const { games_missed } = await res.json()
 
-  // CALCULATE DURABILITY SCORE
+  // calculate durability score
   const percentGamesMissed =
     (Number(games_missed) / ((endSeason - startSeason + 1) * 82)) * 100
 
-  console.log('%age games missed', percentGamesMissed)
   let durabilityScore = ''
-
   // assigning letter grade
   if (percentGamesMissed === 0) durabilityScore += 'N/A'
   else if (percentGamesMissed < 10) durabilityScore += 'A'

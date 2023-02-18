@@ -10,7 +10,6 @@ import {
 import { Player } from '@/types/types'
 import React, { useEffect, useState } from 'react'
 import { fetchDurabilityScore } from '@/database/fetchDurabilityScore'
-// import Image from 'next/image'
 
 type PlayerCardProps = {
   player: Player
@@ -59,12 +58,6 @@ const PlayerCard = ({ player, nbaPlayerId }: PlayerCardProps) => {
       <Card sx={{ boxShadow: 3 }}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <CardMedia sx={{ mx: 2, mt: 2 }}>
-            {/* <Image
-            src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${nbaPlayerId}.png`}
-            alt="player headshot"
-            width={100}
-            height={100}
-          /> */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageStringUrl}

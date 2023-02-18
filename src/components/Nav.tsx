@@ -1,7 +1,6 @@
 import { Typography, Box } from '@mui/material'
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball'
 import Link from 'next/link'
-// can import a nav stylesheet here
 
 const Nav = () => {
   return (

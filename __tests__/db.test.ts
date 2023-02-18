@@ -8,7 +8,6 @@ import { fetchInjuryDataArgs } from '../src/database/fetchInjuryData'
 import fetch from 'jest-fetch-mock'
 
 describe('fetchInjuryData tests', () => {
-  // let global: { fetch: {} }
   const exampleArgs: fetchInjuryDataArgs = {
     playerFirstName: 'LeBron',
     playerLastName: 'James',
@@ -23,7 +22,6 @@ describe('fetchInjuryData tests', () => {
       })
     )
     const results = await fetchInjuryData(exampleArgs)
-    // console.log(results)
     // check properties on results
     expect(results).toHaveProperty('data')
     expect(results.data[0]).toHaveProperty('player')

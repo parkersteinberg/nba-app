@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { queryDatabase } from '@/database'
 
@@ -11,9 +10,6 @@ export default async function handler(
   res: NextApiResponse<GamesMissed>
 ) {
   const { player } = req.query
-  console.log('IN durability.ts endpoint..........')
-
-  console.log(player)
 
   const queryString = `
   SELECT SUM(games_missed)

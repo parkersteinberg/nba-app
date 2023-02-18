@@ -4,17 +4,6 @@ const nextConfig = {
   experimental: {
     forceSwcTransforms: true,
   },
-
-  // images: {
-  //   remotePatterns: [
-  //     {
-  //       protocol: 'https',
-  //       hostname: 'ak-static.cms.nba.com',
-  //       port: '',
-  //       pathname: '/wp-content/uploads/headshots/nba/latest/260x190/**',
-  //     },
-  //   ],
-  // },
 }
 
 module.exports = nextConfig

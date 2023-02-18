@@ -4,9 +4,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import InfoIcon from '@mui/icons-material/Info'
 import { InjuryData } from '@/types/types'
 
-// colunm schema:
-// injury, team, date placed on IL, date removed from IL,
-// days injured, games missed
+// define column schema
 const columns: GridColDef[] = [
   { field: 'injury', headerName: 'Injury', width: 200 },
 
@@ -33,19 +31,18 @@ const columns: GridColDef[] = [
   {
     field: 'date_placed',
     headerName: 'Date placed on IL',
-    type: 'string', // maybe make this type date??
+    type: 'string',
     width: 150,
   },
   {
     field: 'date_activated',
     headerName: 'Date activated from IL',
-    type: 'string', // maybe make this type date??
+    type: 'string',
     width: 170,
   },
 ]
 
 type InjuryHistoryTableProps = {
-  // also will need to add player injury history data here
   injuryData: InjuryData
 }
 
@@ -53,7 +50,7 @@ const InjuryHistoryTable = ({ injuryData }: InjuryHistoryTableProps) => {
   const { data } = injuryData
 
   const gridRows = data.map((row, idx) => {
-    // massage data a bit or date, injury reason
+    // massage data to get clean version of date & injury reason
     const cleanDatePlaced = new Date(row.date_placed).toISOString().slice(0, 10)
     const cleanDateActivated = new Date(row.date_activated)
       .toISOString()
@@ -83,14 +80,12 @@ const InjuryHistoryTable = ({ injuryData }: InjuryHistoryTableProps) => {
             height: 500,
             minWidth: 800,
             my: 6,
-            // display: 'flex',
-            // flexDirection: 'column',
           }}
         >
           <Typography gutterBottom variant="h4" component="div">
             Injury History Breakdown
             <Tooltip
-              title="Sort, filter, or customize columns to view in this table by clicking the menu icon at the header of any column"
+              title="Sort, filter, and customize columns in this table by clicking the menu icon at the header of any column"
               placement="top"
             >
               <IconButton sx={{ transform: 'scale(0.9)' }}>

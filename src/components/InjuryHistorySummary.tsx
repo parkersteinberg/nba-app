@@ -4,7 +4,6 @@ import { InjuryData } from '@/types/types'
 
 type InjuryHistorySummaryProps = {
   player: Player
-  // also will need to add player injury history data here
   injuryData: InjuryData
   injurySummaryStartYear: string
   injurySummaryEndYear: string
@@ -16,7 +15,7 @@ const InjuryHistorySummary = ({
   injurySummaryStartYear,
   injurySummaryEndYear,
 }: InjuryHistorySummaryProps) => {
-  // do some calculations upon render for summary stats
+  // calculate summary stats for injury history summary
   const { data } = injuryData
   let totalDaysMissed: number | null = null
   let totalGamesMissed: number | null = null

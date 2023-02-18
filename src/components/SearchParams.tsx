@@ -22,13 +22,10 @@ const SearchParams = () => {
   const handleSearchSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
     e.preventDefault()
-    console.log('searchInput is:', searchInput)
     const res = await fetch(
       `https://www.balldontlie.io/api/v1/players?search=${searchInput}&per_page=100`
     )
-    console.log(`rest is ${res}`)
     const { data } = await res.json()
-    console.log('data in SearchParams: ', data)
 
     data.sort((a: Player, b: Player) =>
       `${a.first_name} ${a.last_name}` > `${b.first_name} ${b.last_name}`

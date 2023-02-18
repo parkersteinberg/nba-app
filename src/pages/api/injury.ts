@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { queryDatabase } from '@/database'
 import { InjuryDataRow } from '@/types/types'
@@ -12,15 +11,8 @@ export default async function handler(
   res: NextApiResponse<InjuryData>
 ) {
   const { player, startYear, endYear } = req.query
-  console.log('IN injury.ts endpoint..........')
 
-  console.log(player, startYear, endYear)
-
-  // calculate date to query db (input = season but we need different dates for querying the db)
-  // later (when more time): add "season" field to db
-  // start year --> july of that year
-  // end year --> end of june of the following year
-  // ALTERNATIVELY HERE: if no years sent, just use 2012 and 2021 seasons
+  // calculate date to query db based on season
   let queryStartYear
   let queryEndYear
   if (startYear && endYear) {
@@ -42,7 +34,7 @@ export default async function handler(
   WHERE player = '${player}'
   ${dateFilter}
   `
-  // TODO: redo with async await syntax
+
   try {
     const result = await queryDatabase(queryString, [])
     res.status(200).json({ data: result.rows })

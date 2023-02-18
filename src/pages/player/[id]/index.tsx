@@ -20,8 +20,7 @@ const PlayerHome = () => {
     const fetchStaticPlayerData = async () => {
       const res = await fetch(`https://www.balldontlie.io/api/v1/players/${id}`)
       const data = await res.json()
-      // return data
-      await setPlayer({ player, ...data })
+      setPlayer({ player, ...data })
     }
     fetchStaticPlayerData()
 
@@ -78,8 +77,6 @@ const PlayerHome = () => {
 
 // assist with retrieving url params upon page refresh
 export async function getServerSideProps() {
-  // console.log(context)
-
   return {
     props: {},
   }

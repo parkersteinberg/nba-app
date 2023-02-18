@@ -25,7 +25,6 @@ export default function Home() {
             textAlign: 'center',
             mb: 8,
             maxWidth: '80%',
-            // minWidth: '400px',
           }}
         >
           <Typography variant="h6" component="div">

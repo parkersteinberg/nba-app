@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import createEmotionCache from '../config/createEmotionCache'
 
-// Client-side cache, shared for the whole session of the user in the browser.
+// Client-side cache, shared for the whole session of the user in the browser to limit 'flickering'
 const clientSideEmotionCache = createEmotionCache()
 
 interface MyAppProps extends AppProps {

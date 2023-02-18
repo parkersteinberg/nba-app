@@ -38,18 +38,17 @@ const InjurySearchParams = ({ player }: InjurySearchParamsProps) => {
   // on page load, get this player's injury data
   const getInjuryData = async (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault()
-    // set injurySummaryStartYear
+    // set injury seasons
     setinjurySummaryStartYear(startSeason)
     setinjurySummaryEndYear(endSeason)
 
-    // fetch data
+    // fetch data and set state
     const args = {
       playerFirstName: player.first_name,
       playerLastName: player.last_name,
       startSeason,
       endSeason,
     }
-    // set state with return data
     const data: InjuryData | undefined = await fetchInjuryData(args)
     setInjuryData(data)
   }

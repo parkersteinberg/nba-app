@@ -1,38 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Injury Insights 🏀
 
-## Getting Started
+<br>
 
-First, run the development server:
+## Visit Injury Insights: https://injury-insights.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<br>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Evaluate durability of NBA players and make data-driven decisions based on player injury history
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+<br>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Search for any player in the league and get a look into their injury history.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<br>
+Features include:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Search functionality to find any NBA player
+- A summary of injury history (with customizable date range)
+- Tabular view of previous injuries and games missed due to injury
+- Proprietary Durability Score for each player.
 
-## Learn More
+<br>
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies Used:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [TypeScript]()
+- [React]()
+- [NextJS]()
+- [Material UI]()
+- [PostreSQL]() & [CockroachDB]()
+- Custom database scraped with [nba_inury_scraper](https://github.com/parkersteinberg/nba-injury-scraper) using [Python](), [BeautifulSoup](), and [Pandas](). [^1]
+- Testing: [Jest](), [React Testing Library]()
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<br>
 
-## Deploy on Vercel
+### Connecting to PostgreSQL database
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+In a .env file, add `DATABASE_URL=<YOUR_DB_URL>`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<br>
+
+Built by [Parker Steinberg](https://github.com/parkersteinberg)
+
+<br>
+
+[^1]: The data that this app uses is intentionally limited to a 10-season time span (2012-13 season through the 2021-22 season). Future iterations of this app would expand to real-time injury data (scraped data) and would go back to an earlier start date.

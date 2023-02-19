@@ -32,4 +32,4 @@ Built by [Parker Steinberg](https://github.com/parkersteinberg)
 
 <br>
 
-[^1]: Injury Insight's dataset is intentionally limited to a 10-season time span (2012-13 season through the 2021-22 season). Future versions of this app will expand coverage to include real-time injury data as well as data from earlier NBA seasons
+[^1]: Injury Insights' dataset is intentionally limited to a 10-season time span (2012-13 season through the 2021-22 season). Future versions of this app will expand coverage to include real-time injury data as well as data from earlier NBA seasons

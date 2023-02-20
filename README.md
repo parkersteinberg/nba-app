@@ -10,7 +10,7 @@ Features include:
 
 - Search functionality to find any NBA player [^1]
 - A summary of injury history (with customizable date range)
-- Tabular view of previous injuries and games missed due to injury
+- Interactive tabular view of previous injuries and games missed due to injury
 - Proprietary Durability Score for each player
 
 <br>
